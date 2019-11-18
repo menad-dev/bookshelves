@@ -1,0 +1,18 @@
+<!-- Create the template Sign up -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Create your account</h2>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" formControlName="email">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]=signUpForm.invalid>Create my account</button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>
