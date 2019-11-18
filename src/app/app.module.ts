@@ -8,12 +8,14 @@ import { HeaderComponent } from './header/header.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { from } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { SigninComponent } from './auth/signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SignupComponent
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
