@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   errorMessage: string;
+  iconSuccess: boolean;
+  iconFailed: boolean;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
@@ -21,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   initForm() {
     this.signUpForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/)]],
       password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
     });
   }
@@ -32,11 +34,22 @@ export class SignupComponent implements OnInit {
 
     this.authService.createNewUser(email, password).then(
       () => {
-        // this.router.navigate(['/books']);
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signUpForm.value));
+        this.iconSuccess = false;
+        this.iconFailed = true;
+        setTimeout(
+          () => {
+            this.router.navigate(['/books']);
+          }, 1000
+        );
       },
       (error) => {
-        this.errorMessage = error;
+        this.iconSuccess = true;
+        this.iconFailed = false;
+        setTimeout(
+          () => {
+            this.errorMessage = error;
+          }, 1500
+        );
       }
     );
   }

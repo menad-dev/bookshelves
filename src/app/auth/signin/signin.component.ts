@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
   signInForm: FormGroup;
   errorMessage: string;
+  iconSuccess: boolean;
+  iconFailed: boolean;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
@@ -30,13 +32,25 @@ export class SigninComponent implements OnInit {
     const email = this.signInForm.get('email').value;
     const password = this.signInForm.get('password').value;
 
-    this.authService.createNewUser(email, password).then(
+    this.authService.signInUser(email, password).then(
       () => {
-        // this.router.navigate(['/books']);
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signInForm.value));
+        this.iconSuccess = false;
+        this.iconFailed = true;
+        setTimeout(
+          () => {
+            this.router.navigate(['/books']);
+          }, 1000
+        );
+        // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signInForm.value));
       },
       (error) => {
-        this.errorMessage = error;
+        this.iconSuccess = true;
+        this.iconFailed = false;
+        setTimeout(
+          () => {
+            this.errorMessage = error;
+          }, 1500
+        );
       }
     );
   }

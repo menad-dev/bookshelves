@@ -8,6 +8,7 @@ export class AuthService {
 
   constructor() { }
 
+  // Méthode pour Créer un nouvel Utilisateur ......
   createNewUser(email: string, password: string) {
     return new Promise(
       (resolve, reject) => {
@@ -23,6 +24,7 @@ export class AuthService {
     );
   }
 
+  // Méthode pour Connecter L'utilisateur ......
   signInUser(email: string, password: string) {
     return new Promise(
       (resolve, reject) => {
@@ -38,6 +40,7 @@ export class AuthService {
     );
   }
 
+  // Méthode pour Déconnecter L'utilisateur ......
   signOutUser() {
     firebase.auth().signOut();
   }

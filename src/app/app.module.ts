@@ -9,13 +9,21 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { from } from 'rxjs';
 import { AuthService } from './services/auth.service';
 import { SigninComponent } from './auth/signin/signin.component';
+import { BookListComponent } from './book-list/book-list.component';
+import { BookFormComponent } from './book-list/book-form/book-form.component';
+import { SingleBookComponent } from './book-list/single-book/single-book.component';
+import { BooksService } from './services/books.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    BookListComponent,
+    BookFormComponent,
+    SingleBookComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +32,9 @@ import { SigninComponent } from './auth/signin/signin.component';
     ReactiveFormsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    BooksService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
