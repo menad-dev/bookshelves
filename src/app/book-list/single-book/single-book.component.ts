@@ -16,7 +16,6 @@ export class SingleBookComponent implements OnInit {
 
   ngOnInit() {
     this.book = new Book('', '');
-    // tslint:disable-next-line: no-string-literal
     const id = this.route.snapshot.params['id'];
     this.booksService.getSingleBook(+id).then(
       (book: Book) => {
